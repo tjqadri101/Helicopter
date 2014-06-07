@@ -1,0 +1,67 @@
+Quartus II Archive log --	C:/Users/talal/Desktop/skeleton_restored/skeleton.qarlog
+
+Archive:	C:/Users/talal/Desktop/skeleton_restored/skeleton.qar
+Date:		Wed Apr 23 12:30:21 2014
+Quartus II		9.1 Build 350 03/24/2010 SP 2 SJ Web Edition
+
+	=========== Files Selected: ===========
+C:/Users/talal/Desktop/ECE 350/Final project/skeleton_restored/skeleton.dpf
+C:/Users/talal/Desktop/ECE 350/skeleton_restored/skeleton.dpf
+C:/Users/talal/Desktop/skeleton_restored/ALU.v
+C:/Users/talal/Desktop/skeleton_restored/Altera_UP_PS2_Command_Out.v
+C:/Users/talal/Desktop/skeleton_restored/Altera_UP_PS2_Data_In.v
+C:/Users/talal/Desktop/skeleton_restored/Block1.bdf
+C:/Users/talal/Desktop/skeleton_restored/Documents/Duke/Teaching/ECE 350/Quartus9Projects/skeleton/skeleton.dpf
+C:/Users/talal/Desktop/skeleton_restored/Hexadecimal_To_Seven_Segment.v
+C:/Users/talal/Desktop/skeleton_restored/LedMatrixRegister.v
+C:/Users/talal/Desktop/skeleton_restored/PS2_Controller.v
+C:/Users/talal/Desktop/skeleton_restored/PS2_Interface.v
+C:/Users/talal/Desktop/skeleton_restored/SSD.v
+C:/Users/talal/Desktop/skeleton_restored/assignment_defaults.qdf
+C:/Users/talal/Desktop/skeleton_restored/bypassCtrl.v
+C:/Users/talal/Desktop/skeleton_restored/clockChecker.v
+C:/Users/talal/Desktop/skeleton_restored/db/skeleton.sim.cvwf
+C:/Users/talal/Desktop/skeleton_restored/decode.v
+C:/Users/talal/Desktop/skeleton_restored/dmem.cmp
+C:/Users/talal/Desktop/skeleton_restored/dmem.mif
+C:/Users/talal/Desktop/skeleton_restored/dmem.qip
+C:/Users/talal/Desktop/skeleton_restored/dmem.v
+C:/Users/talal/Desktop/skeleton_restored/dmem_inst.v
+C:/Users/talal/Desktop/skeleton_restored/execute.v
+C:/Users/talal/Desktop/skeleton_restored/fetch.v
+C:/Users/talal/Desktop/skeleton_restored/imem.cmp
+C:/Users/talal/Desktop/skeleton_restored/imem.mif
+C:/Users/talal/Desktop/skeleton_restored/imem.qip
+C:/Users/talal/Desktop/skeleton_restored/imem.v
+C:/Users/talal/Desktop/skeleton_restored/imem_inst.v
+C:/Users/talal/Desktop/skeleton_restored/lcd.sv
+C:/Users/talal/Desktop/skeleton_restored/ldStall.v
+C:/Users/talal/Desktop/skeleton_restored/lpm_divide0.bsf
+C:/Users/talal/Desktop/skeleton_restored/lpm_divide0.qip
+C:/Users/talal/Desktop/skeleton_restored/lpm_divide0.v
+C:/Users/talal/Desktop/skeleton_restored/lpm_divide0_bb.v
+C:/Users/talal/Desktop/skeleton_restored/lpm_mult1.v
+C:/Users/talal/Desktop/skeleton_restored/memory.v
+C:/Users/talal/Desktop/skeleton_restored/multDiv.v
+C:/Users/talal/Desktop/skeleton_restored/pipeProcessor.v
+C:/Users/talal/Desktop/skeleton_restored/pll.bsf
+C:/Users/talal/Desktop/skeleton_restored/pll.cmp
+C:/Users/talal/Desktop/skeleton_restored/pll.ppf
+C:/Users/talal/Desktop/skeleton_restored/pll.qip
+C:/Users/talal/Desktop/skeleton_restored/pll.v
+C:/Users/talal/Desktop/skeleton_restored/processMulDiv.v
+C:/Users/talal/Desktop/skeleton_restored/processor.v
+C:/Users/talal/Desktop/skeleton_restored/regFile.v
+C:/Users/talal/Desktop/skeleton_restored/scoreCounter.v
+C:/Users/talal/Desktop/skeleton_restored/shiftRegister.v
+C:/Users/talal/Desktop/skeleton_restored/skeleton.dpf
+C:/Users/talal/Desktop/skeleton_restored/skeleton.qpf
+C:/Users/talal/Desktop/skeleton_restored/skeleton.qsf
+C:/Users/talal/Desktop/skeleton_restored/skeleton.v
+C:/Users/talal/Desktop/skeleton_restored/skeleton.vwf
+C:/Users/talal/Desktop/skeleton_restored/testProc.v
+C:/Users/talal/Desktop/skeleton_restored/write_back.v
+	======= Total: 56 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

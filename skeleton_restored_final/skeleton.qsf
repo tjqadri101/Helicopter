@@ -1,0 +1,163 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2010 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II
+# Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+# Date created = 17:49:22  March 07, 2014
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		skeleton_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone II"
+set_global_assignment -name DEVICE EP2C35F672C6
+set_global_assignment -name TOP_LEVEL_ENTITY testProc
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "9.1 SP2"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "17:49:22  MARCH 07, 2014"
+set_global_assignment -name LAST_QUARTUS_VERSION "9.1 SP2"
+set_global_assignment -name USE_GENERATED_PHYSICAL_CONSTRAINTS OFF -section_id eda_blast_fpga
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name MISC_FILE "Documents/Duke/Teaching/ECE 350/Quartus9Projects/skeleton/skeleton.dpf"
+set_global_assignment -name SEARCH_PATH "Documents/Duke/Teaching/ECE 350/Quartus9Projects/skeleton/" -tag from_archive
+set_global_assignment -name SIMULATION_MODE TIMING
+set_global_assignment -name VERILOG_FILE processor.v
+set_global_assignment -name VERILOG_FILE lpm_mult1.v
+set_global_assignment -name VERILOG_FILE skeleton.v
+set_global_assignment -name QIP_FILE imem.qip
+set_global_assignment -name MIF_FILE imem.mif
+set_global_assignment -name QIP_FILE dmem.qip
+set_global_assignment -name MIF_FILE dmem.mif
+set_global_assignment -name QIP_FILE pll.qip
+set_global_assignment -name VERILOG_FILE PS2_Interface.v
+set_global_assignment -name VERILOG_FILE Altera_UP_PS2_Command_Out.v
+set_global_assignment -name SYSTEMVERILOG_FILE lcd.sv
+set_global_assignment -name VERILOG_FILE Hexadecimal_To_Seven_Segment.v
+set_global_assignment -name VERILOG_FILE PS2_Controller.v
+set_global_assignment -name VERILOG_FILE Altera_UP_PS2_Data_In.v
+set_global_assignment -name VERILOG_FILE regFile.v
+set_global_assignment -name VERILOG_FILE ALU.v
+set_global_assignment -name VERILOG_FILE multDiv.v
+set_global_assignment -name VERILOG_FILE fetch.v
+set_global_assignment -name VECTOR_WAVEFORM_FILE skeleton.vwf
+set_global_assignment -name VERILOG_FILE decode.v
+set_global_assignment -name MIF_FILE test_out.imem.mif
+set_global_assignment -name VERILOG_FILE execute.v
+set_global_assignment -name VERILOG_FILE memory.v
+set_global_assignment -name VERILOG_FILE write_back.v
+set_global_assignment -name VERILOG_FILE pipeProcessor.v
+set_global_assignment -name VERILOG_FILE bypassCtrl.v
+set_global_assignment -name VERILOG_FILE ldStall.v
+set_global_assignment -name VERILOG_FILE processMulDiv.v
+set_global_assignment -name QIP_FILE lpm_divide0.qip
+set_global_assignment -name BDF_FILE Block1.bdf
+set_global_assignment -name MISC_FILE "C:/Users/talal/Desktop/ECE 350/Final project/skeleton_restored/skeleton.dpf"
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_global_assignment -name VERILOG_FILE testProc.v
+set_location_assignment PIN_G26 -to PB1
+set_location_assignment PIN_N23 -to PB2
+set_location_assignment PIN_P23 -to aclr
+set_location_assignment PIN_K21 -to clock
+set_location_assignment PIN_K26 -to playLeds[0]
+set_location_assignment PIN_M23 -to playLeds[1]
+set_location_assignment PIN_M20 -to playLeds[2]
+set_location_assignment PIN_M21 -to playLeds[3]
+set_location_assignment PIN_M25 -to playLeds[4]
+set_location_assignment PIN_P24 -to playLeds[5]
+set_global_assignment -name STRATIX_CONFIGURATION_DEVICE AUTO
+set_global_assignment -name RESERVE_ASDO_AFTER_CONFIGURATION "AS INPUT TRI-STATED"
+set_location_assignment PIN_AB21 -to clk
+set_global_assignment -name VERILOG_FILE clockChecker.v
+set_global_assignment -name VERILOG_FILE LedMatrixRegister.v
+set_location_assignment PIN_AE22 -to collisionDetected
+set_location_assignment PIN_T22 -to row3LedsOut[0]
+set_location_assignment PIN_T24 -to row3LedsOut[1]
+set_location_assignment PIN_T18 -to row3LedsOut[2]
+set_location_assignment PIN_T20 -to row3LedsOut[3]
+set_location_assignment PIN_U25 -to row3LedsOut[4]
+set_location_assignment PIN_U24 -to row3LedsOut[5]
+set_location_assignment PIN_J22 -to row2LedsOut[0]
+set_location_assignment PIN_E25 -to row2LedsOut[1]
+set_location_assignment PIN_F23 -to row2LedsOut[2]
+set_location_assignment PIN_J20 -to row2LedsOut[3]
+set_location_assignment PIN_F26 -to row2LedsOut[4]
+set_location_assignment PIN_P18 -to row2LedsOut[5]
+set_location_assignment PIN_G24 -to row1LedsOut[0]
+set_location_assignment PIN_G25 -to row1LedsOut[1]
+set_location_assignment PIN_H24 -to row1LedsOut[2]
+set_location_assignment PIN_J24 -to row1LedsOut[3]
+set_location_assignment PIN_H26 -to row1LedsOut[4]
+set_location_assignment PIN_K18 -to row1LedsOut[5]
+set_location_assignment PIN_R24 -to row4Leds[5]
+set_location_assignment PIN_T19 -to row4Leds[4]
+set_location_assignment PIN_U21 -to row4Leds[3]
+set_location_assignment PIN_V25 -to row4Leds[2]
+set_location_assignment PIN_V23 -to row4Leds[1]
+set_location_assignment PIN_W23 -to row4Leds[0]
+set_global_assignment -name VERILOG_FILE shiftRegister.v
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
+set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
+set_global_assignment -name SMART_RECOMPILE ON
+set_global_assignment -name MISC_FILE "C:/Users/talal/Desktop/ECE 350/skeleton_restored/skeleton.dpf"
+set_global_assignment -name VERILOG_FILE SSD.v
+set_global_assignment -name VERILOG_FILE scoreCounter.v
+set_location_assignment PIN_Y23 -to hex1[0]
+set_location_assignment PIN_AA25 -to hex1[1]
+set_location_assignment PIN_AA26 -to hex1[2]
+set_location_assignment PIN_Y26 -to hex1[3]
+set_location_assignment PIN_Y25 -to hex1[4]
+set_location_assignment PIN_U22 -to hex1[5]
+set_location_assignment PIN_W24 -to hex1[6]
+set_location_assignment PIN_AB23 -to hex2[0]
+set_location_assignment PIN_V22 -to hex2[1]
+set_location_assignment PIN_AC25 -to hex2[2]
+set_location_assignment PIN_AC26 -to hex2[3]
+set_location_assignment PIN_AB26 -to hex2[4]
+set_location_assignment PIN_AB25 -to hex2[5]
+set_location_assignment PIN_Y24 -to hex2[6]
+set_location_assignment PIN_AF10 -to hex4[0]
+set_location_assignment PIN_V20 -to hex3[0]
+set_location_assignment PIN_V21 -to hex3[1]
+set_location_assignment PIN_W21 -to hex3[2]
+set_location_assignment PIN_Y22 -to hex3[3]
+set_location_assignment PIN_AA24 -to hex3[4]
+set_location_assignment PIN_AA23 -to hex3[5]
+set_location_assignment PIN_AB24 -to hex3[6]
+set_location_assignment PIN_AB12 -to hex4[1]
+set_location_assignment PIN_AC12 -to hex4[2]
+set_location_assignment PIN_AD11 -to hex4[3]
+set_location_assignment PIN_AE11 -to hex4[4]
+set_location_assignment PIN_V14 -to hex4[5]
+set_location_assignment PIN_V13 -to hex4[6]
+set_global_assignment -name MISC_FILE "C:/Users/talal/Desktop/skeleton_restored/skeleton.dpf"
+set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE skeleton.vwf
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

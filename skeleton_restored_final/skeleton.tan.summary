@@ -1,0 +1,76 @@
+--------------------------------------------------------------------------------------
+Timing Analyzer Summary
+--------------------------------------------------------------------------------------
+
+Type           : Worst-case tsu
+Slack          : N/A
+Required Time  : None
+Actual Time    : 7.100 ns
+From           : PB1
+To             : pipeProcessor:testProc|fetch:fetchStageMod|register:pcReg|my_dff:myblock[2].dFF|f
+From Clock     : --
+To Clock       : clock
+Failed Paths   : 0
+
+Type           : Worst-case tco
+Slack          : N/A
+Required Time  : None
+Actual Time    : 14.187 ns
+From           : pipeProcessor:testProc|memory:memoryStageMod|register:playLedReg|my_dff:myblock[0].dFF|f
+To             : row2LedsOut[1]
+From Clock     : clock
+To Clock       : --
+Failed Paths   : 0
+
+Type           : Worst-case tpd
+Slack          : N/A
+Required Time  : None
+Actual Time    : 10.647 ns
+From           : clock
+To             : clk
+From Clock     : --
+To Clock       : --
+Failed Paths   : 0
+
+Type           : Worst-case th
+Slack          : N/A
+Required Time  : None
+Actual Time    : -1.765 ns
+From           : PB2
+To             : pipeProcessor:testProc|fetch:fetchStageMod|my_dff:PB21ff|f
+From Clock     : --
+To Clock       : clock
+Failed Paths   : 0
+
+Type           : Clock Setup: 'clock'
+Slack          : N/A
+Required Time  : None
+Actual Time    : 8.33 MHz ( period = 120.049 ns )
+From           : pipeProcessor:testProc|memory:memoryStageMod|my_dff:jalMemFF1|f
+To             : pipeProcessor:testProc|execute:executeStageMod|register:execALUReg|my_dff:myblock[27].dFF|f
+From Clock     : clock
+To Clock       : clock
+Failed Paths   : 0
+
+Type           : Clock Hold: 'clock'
+Slack          : Not operational: Clock Skew > Data Delay
+Required Time  : None
+Actual Time    : N/A
+From           : pipeProcessor:testProc|execute:executeStageMod|register:RData2Reg|my_dff:myblock[16].dFF|f
+To             : pipeProcessor:testProc|memory:memoryStageMod|dmem:dataMem|altsyncram:altsyncram_component|altsyncram_vqc1:auto_generated|ram_block1a16~porta_datain_reg0
+From Clock     : clock
+To Clock       : clock
+Failed Paths   : 1
+
+Type           : Total number of failed paths
+Slack          : 
+Required Time  : 
+Actual Time    : 
+From           : 
+To             : 
+From Clock     : 
+To Clock       : 
+Failed Paths   : 1
+
+--------------------------------------------------------------------------------------
+

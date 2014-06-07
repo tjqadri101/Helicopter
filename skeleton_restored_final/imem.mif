@@ -1,0 +1,79 @@
+-- Copyright (C) 1991-2010 Altera Corporation
+-- Your use of Altera Corporation's design tools, logic functions 
+-- and other software and tools, and its AMPP partner logic 
+-- functions, and any output files from any of the foregoing 
+-- (including device programming or simulation files), and any 
+-- associated documentation or information are expressly subject 
+-- to the terms and conditions of the Altera Program License 
+-- Subscription Agreement, Altera MegaCore Function License 
+-- Agreement, or other applicable license agreement, including, 
+-- without limitation, that your use is for the sole purpose of 
+-- programming logic devices manufactured by Altera and sold by 
+-- Altera or its authorized distributors.  Please refer to the 
+-- applicable agreement for further details.
+
+-- Quartus II generated Memory Initialization File (.mif)
+
+WIDTH=32;
+DEPTH=4096;
+
+ADDRESS_RADIX=HEX;
+DATA_RADIX=HEX;
+
+CONTENT BEGIN
+	0000  :   28400001;
+	0001  :   28800064;
+	0002  :   28C00061;
+	0003  :   2F800001;
+	0004  :   30860002;
+	0005  :   0085E004;
+	0006  :   08000004;
+	0007  :   2A100005;
+	0008  :   2BC0005C;
+	0009  :   309E0002;
+	000A  :   0085E004;
+	000B  :   08000009;
+	000C  :   2A400000;
+	000D  :   29000058;
+	000E  :   30880002;
+	000F  :   0085E004;
+	0010  :   0800000E;
+	0011  :   2A100000;
+	0012  :   29400055;
+	0013  :   308A0002;
+	0014  :   0085E004;
+	0015  :   08000013;
+	0016  :   2C800000;
+	0017  :   29000052;
+	0018  :   30880002;
+	0019  :   0085E004;
+	001A  :   08000018;
+	001B  :   2A100000;
+	001C  :   29000050;
+	001D  :   30880002;
+	001E  :   0085E004;
+	001F  :   0800001D;
+	0020  :   2A400000;
+	0021  :   2BC0004E;
+	0022  :   309E0002;
+	0023  :   0085E004;
+	0024  :   08000022;
+	0025  :   2A100015;
+	0026  :   2900004C;
+	0027  :   30880002;
+	0028  :   0085E004;
+	0029  :   08000027;
+	002A  :   2A800000;
+	002B  :   2940004A;
+	002C  :   308A0002;
+	002D  :   0085E004;
+	002E  :   0800002C;
+	002F  :   2A10000B;
+	0030  :   29000048;
+	0031  :   30880002;
+	0032  :   0085E004;
+	0033  :   08000031;
+	0034  :   2A800000;
+	0035  :   08000001;
+	[0036..0FFF]  :   00000000;
+END;

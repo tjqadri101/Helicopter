@@ -1,0 +1,284 @@
+module ALU(data_operandA, data_operandB, ctrl_ALUopcode, ctrl_shiftamt, data_result, isNotEqual, isLessThan);
+   input [31:0] data_operandA, data_operandB;
+    input [4:0] ctrl_ALUopcode, ctrl_shiftamt;
+   output [31:0] data_result;
+   output isNotEqual, isLessThan, collisionDetected;
+   wire [31:0] and1, or1, negate, add1, sub1, sleftl, srighta;
+   wire [5:0] s; //mux select
+   wire coutAdd, coutSub, cinAdd, cinSub, notEqual, notZero;
+   wire [1:0] subSelect;
+   
+   assign cinAdd = 0;
+   assign cinSub = 1;
+   
+   Dec2 #(3,6) d1(ctrl_ALUopcode[2:0], s); //only lower three bits of control taken as upper two always low
+   
+   bitwise b1(data_operandA, data_operandB, and1, or1, negate);
+   
+   CLA add(data_operandA, data_operandB, cinAdd, add1, coutAdd);
+   CLA sub(data_operandA, negate, cinSub, sub1, coutSub);
+   sll s1(data_operandA, ctrl_shiftamt, sleftl);
+   sra s2(data_operandA, ctrl_shiftamt, srighta);
+   Mux6 #(32) m(srighta, sleftl, or1, and1, sub1, add1, s, data_result);
+	
+	
+	assign notEqual = sub1[31] | sub1[30] | sub1[29] | sub1[28] | sub1[27] | sub1[26] | sub1[25] | sub1[24] | sub1[23] | sub1[22] |
+						sub1[21] | sub1[20] | sub1[19] | sub1[18] | sub1[17] | sub1[16] | sub1[15] | sub1[14] | sub1[13] | sub1[12] |
+						sub1[11] | sub1[10] | sub1[9] | sub1[8] | sub1[7] | sub1[6] | sub1[5] | sub1[4] | sub1[3] | sub1[2] | sub1[1] | sub1[0];
+	
+	assign isNotEqual = notEqual;
+	assign isLessThan = sub1[31];
+	
+   
+
+   
+endmodule
+
+//6:1 mux from two 3:1 muxes
+module Mux6(a5, a4, a3, a2, a1, a0, s, b);
+	parameter k = 1;
+	input [k-1:0] a5, a4, a3, a2, a1, a0;
+	input [5:0] s;
+	output [k-1:0] b;
+	wire [k-1:0] ba, bb;
+	
+	assign b = ba|bb;
+	
+	Mux3 #(k) ma(a2, a1, a0, s[2:0], ba);
+	Mux3 #(k) mb(a5, a4, a3, s[5:3], bb);
+endmodule	
+
+
+// 3:1 multiplexer(arbitrary width)
+module Mux3(a2, a1, a0, s, b);
+	parameter k = 1;
+	input [k-1:0] a0, a1, a2; //inputs
+	input [2:0] s; // one-hot select
+	output [k-1:0] b;
+	
+	assign b =({k{s[2]}} & a2) | ({k{s[1]}} & a1) | ({k{s[0]}} & a0);
+endmodule
+
+
+//bitwise inverter, and, or
+module bitwise(a,b, and1, or1, negate);
+	input [31:0] a, b;
+	output [31:0] and1, or1, negate;
+	
+	assign and1 = a&b;
+	assign or1 = a|b;
+	assign negate = ~b;
+endmodule	
+
+
+
+//sra for 32 bit input
+module sra(a,b, out);
+	input [31:0] a;
+	input [4:0] b;
+	output [31:0] out;
+	wire [31:0] w1, w2, w3, w4, w5, w6, w7, w8, w9;
+	wire [1:0] s1,s2,s3,s4,s5; //one-hot mux select
+	Dec2 d01(b[0], s1);
+	Dec2 d02(b[1], s2);
+	Dec2 d03(b[2], s3);
+	Dec2 d04(b[3], s4);
+	Dec2 d05(b[4], s5);
+	
+	rshifter #(16) d1(a, w1);
+	Mux2b #(32) m1(w1, a, s5,w2);
+	
+	rshifter #(8) d2(w2, w3);
+	Mux2b #(32) m2(w3, w2, s4, w4);
+	
+	rshifter #(4) d3(w4, w5);
+	Mux2b #(32) m3(w5, w4, s3, w6);
+	
+	rshifter #(2) d4(w6, w7);
+	Mux2b #(32) m4(w7, w6, s2, w8);
+	
+	rshifter d5(w8, w9);
+	Mux2b #(32) m5(w9, w8, s1, out);
+endmodule
+//sll for 32 bit input
+module sll(a,b, out);
+	input [31:0] a;
+	input [4:0] b;
+	output [31:0] out;
+	wire [31:0] w1, w2, w3, w4, w5, w6, w7, w8, w9;
+	wire [1:0] s1,s2,s3,s4,s5; //one-hot mux select
+	Dec2 d01(b[0], s1);
+	Dec2 d02(b[1], s2);
+	Dec2 d03(b[2], s3);
+	Dec2 d04(b[3], s4);
+	Dec2 d05(b[4], s5);
+	
+	lshifter #(16) d1(a, w1);
+	Mux2b #(32) m1(w1, a, s5,w2);
+	
+	lshifter #(8) d2(w2, w3);
+	Mux2b #(32) m2(w3, w2, s4, w4);
+	
+	lshifter #(4) d3(w4, w5);
+	Mux2b #(32) m3(w5, w4, s3, w6);
+	
+	lshifter #(2) d4(w6, w7);
+	Mux2b #(32) m4(w7, w6, s2, w8);
+	
+	lshifter d5(w8, w9);
+	Mux2b #(32) m5(w9, w8, s1, out);
+endmodule	
+
+//right arithmetic shifter
+module rshifter(a, out);
+	parameter k = 1;
+	input [31:0] a;
+	output [31:0] out;
+	wire msb;
+	wire [31:0] log;
+	genvar i;
+	assign msb = a[31];
+	
+	assign out[31-k:0] = a[31:k];
+	
+	generate
+		for (i = 31; i > 31-k; i = i - 1) begin: exten
+				assign out[i] = msb;
+		end 
+	endgenerate
+endmodule
+
+//left logical shifter
+module lshifter(a, out);
+	parameter k = 1;
+	input [31:0] a;
+	output [31:0] out;
+	genvar i;
+	
+	assign out[31:k] = a[31-k:0];
+	
+	generate
+		for (i = 0; i < k; i = i + 1) begin: exten2
+				assign out[i] = 0;
+		end 
+	endgenerate
+endmodule
+
+// 2:1 multiplexer(arbitrary width)
+module Mux2b(a3, a2, s, b);
+	parameter k = 1;
+	input [k-1:0] a2, a3; //inputs
+	input [1:0] s; // one-hot select
+	output [k-1:0] b;
+	
+	assign b = ({k{s[1]}} & a3) | ({k{s[0]}} & a2);
+endmodule
+
+//n -> m Decoder
+//a - binary output (n bits wide)
+//b - one hot output (m bits wide)
+module Dec2(a,b);
+	parameter n = 1;
+	parameter m = 2;
+	
+	input [n-1:0] a;
+	output [m-1:0] b;
+	
+	assign b = 1 << a;
+endmodule
+
+
+// Shifter modules end here &
+//CLA modules start here
+//32-bit CLA
+module CLA(a, b, cin, sum, cout);
+	input [31:0] a, b;
+	input cin;
+	output [31:0] sum;
+	output cout;
+	wire [31:0] p, g;
+	wire p0, p8, p16, p24, g0, g8, g16, g24;
+	wire c8, c16, c24, c32;
+	
+	propGen8 pg1(a[7:0], b[7:0], p0, g0, p[7:0], g[7:0]);
+	propGen8 pg2(a[15:8], b[15:8], p8, g8, p[15:8], g[15:8]);
+	propGen8 pg3(a[23:16], b[23:16], p16, g16, p[23:16], g[23:16]);
+	propGen8 pg4(a[31:24], b[31:24], p24, g24, p[31:24], g[31:24]);
+	
+	LCU look(p0,g0,p8,g8,p16,g16,p24,g24,cin,c8,c16,c24,c32);
+	assign cout = c32;
+	
+	CLA8 b1 (a[7:0], b[7:0], p[7:0], g[7:0], cin, sum[7:0]);
+	CLA8 b2(a[15:8], b[15:8],p[15:8], g[15:8], c8, sum[15:8]);
+	CLA8 b3(a[23:16], b[23:16],p[23:16], g[23:16], c16, sum[23:16]);
+	CLA8 b4(a[31:24], b[31:24],p[31:24], g[31:24], c24, sum[31:24]);
+endmodule	
+
+//32 bit lookahead carry unit
+module LCU(p0, g0, p8, g8, p16, g16, p24, g24, cin, C8, C16, C24, C32);
+	input p0, g0, p8, g8, p16, g16, p24, g24, cin;
+	output C8, C16, C24, C32;
+	
+	assign C8 = g0 | p0&cin;
+	assign C16 = g8 | g0&p8 | cin&p0&p8;
+	assign C24 = g16 | g8&p16 | g0&p8&p16 | cin&p0&p8&p16;
+	assign C32 = g24 | g16&p24 | g8&p16&p24 | g0&p8&p16&p24 | cin&p0&p8&p16&p24;
+	//assign PG = p0&p8&p16&p24;
+	//assign GG = g24 | g16&p24 | g8&p16&p24 | g0&p8&p16&p24 | cin&p0&p8&p16&p24;
+endmodule
+//calculate group PG and GG for eight bit inputs
+
+module propGen8(a, b, PG, GG, p, g);
+	input [7:0] a, b;
+	output [7:0] p, g;
+	output PG, GG;
+	genvar i;
+	 generate
+		for (i = 0; i <= 7; i = i + 1) begin: curblock
+				propGen pcur(a[i], b[i],p[i], g[i]);
+		end 
+	endgenerate
+	
+	
+	assign PG = p[0]&p[1]&p[2]&p[3]&p[4]&p[5]&p[6]&p[7];
+	assign GG =  (g[7]) | (p[7]&g[6])| (p[7]&p[6]&g[5])| (p[7]&p[6]&p[5]&g[4]) | (p[7]&p[6]&p[5]&p[4]&g[3]) 
+				| (p[7]&p[6]&p[5]&p[4]&p[3]&g[2])| (p[7]&p[6]&p[5]&p[4]&p[3]&p[2]&g[1]) |(p[7]&p[6]&p[5]&p[4]&p[3]&p[2]&p[1]&g[0]);
+endmodule	
+
+module CLA8(a, b, p, g, cin, sum);
+	input [7:0] a, b, p, g;
+	input cin;
+	output [7:0] sum;
+	wire [7:0] c;
+	genvar j;
+	
+	assign c[0] = cin;
+	assign c[1] = g[0] | p[0]&c[0];
+	assign c[2] = g[1] | p[1]&g[0] | p[1]&p[0]&cin;
+	assign c[3] = g[2] | p[2]&g[1] | p[2]&p[1]&g[0] | p[2]&p[1]&p[0]&cin;
+	assign c[4] = g[3] | p[3]&g[2] | p[3]&p[2]&g[1] | p[3]&p[2]&p[1]&g[0] | p[3]&p[2]&p[1]&p[0]&cin;
+	assign c[5] = g[4] | p[4]&g[3] | p[4]&p[3]&g[2] | p[4]&p[3]&p[2]&g[1] | p[4]&p[3]&p[2]&p[1]&g[0] |  p[4]&p[3]&p[2]&p[1]&p[0]&cin;
+	assign c[6] = g[5] | p[5]&g[4] | p[5]&p[4]&g[3] | p[5]&p[4]&p[3]&g[2] | p[5]&p[4]&p[3]&p[2]&g[1] | p[5]&p[4]&p[3]&p[2]&p[1]&g[0] |  p[5]&p[4]&p[3]&p[2]&p[1]&p[0]&cin;
+	assign c[7] = g[6] | p[6]&g[5] | p[6]&p[5]&g[4] | p[6]&p[5]&p[4]&g[3] | p[6]&p[5]&p[4]&p[3]&g[2] | p[6]&p[5]&p[4]&p[3]&p[2]&g[1] | p[6]&p[5]&p[4]&p[3]&p[2]&p[1]&g[0] |  p[6]&p[5]&p[4]&p[3]&p[2]&p[1]&p[0]&cin;
+	
+	 generate
+		for (j = 0; j <= 7; j = j + 1) begin: myblock
+				fullAdder f(a[j], b[j],c[j], sum[j]);
+		end 
+	endgenerate
+	
+endmodule 
+
+module propGen(a,b, p, g);
+	input a, b;
+	output p, g;
+	assign p = a | b;
+	assign g = a&b;
+endmodule	
+
+
+module fullAdder(a, b, cin, s);
+	input a,b,cin;
+	output s; // sum
+	assign s = a^b^cin;
+endmodule

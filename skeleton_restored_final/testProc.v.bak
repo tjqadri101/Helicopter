@@ -1,0 +1,33 @@
+module testProc(aclr, clock, PB1, PB2, playLeds, clk, row1LedsOut, row2LedsOut, row3LedsOut, row4Leds, collisionDetected, 
+	 hex1, hex2, hex3, hex4);//,counterOut);//, FINAL1, 
+		//stallCheck, PC_Final, bOutFinal,  FinalWr1);//, FINAL1, PC_Final);
+	input aclr, clock, PB1, PB2;
+	//output FinalWr1;
+	//output [31:0]  FINAL1;//, PC_Final;//, PC_Final;
+	//output [31:0] counterOut;
+	output [5:0] playLeds, row1LedsOut, row2LedsOut, row3LedsOut, row4Leds;
+	output [6:0]  hex1, hex2, hex3, hex4;
+	output clk, collisionDetected;//, stallCheck, bOutFinal, FinalWr1;
+	wire [31:0] pc_one1, instruction, FINAL, PC_Final1;
+	wire FinalWr, fdCheck1, fdCheck2, stallCheck, bOutFinal;
+	wire [4:0] RD_DEST;
+	wire [5:0] playLeds1, row4LedsOut, row1LedsOut1, row2LedsOut1, row3LedsOut1, consHigh, cons1; 
+	
+	assign consHigh = 6'b111111;
+	assign cons1 = 6'b000001;
+	pipeProcessor testProc(~PB1, ~PB2, ~aclr, clock, pc_one1, instruction, FinalWr, FINAL,RD_DEST, PC_Final1, 
+							fdCheck1, fdCheck2, stallCheck, playLeds, row1LedsOut1, row2LedsOut1, row3LedsOut1, row4LedsOut, 
+							collisionDetected, bOutFinal,  hex4, hex3, hex2, hex1);//, counterOut);
+	
+	//assign FinalWr1 = FinalWr;
+	//assign FINAL1 = FINAL & {32{FinalWr}};
+	assign clk = clock;
+	//assign playLeds = playLeds1;
+	//assign row4Leds = row4LedsOut;
+	
+	Mux2bin #(6) row1Mux(row1LedsOut1, cons1, collisionDetected,row1LedsOut);
+	Mux2bin #(6) row2Mux(row2LedsOut1, cons1, collisionDetected, row2LedsOut);
+	Mux2bin #(6) row3Mux(row3LedsOut1, consHigh, collisionDetected, row3LedsOut);
+	Mux2bin #(6) row4Mux(row4LedsOut, 6'b000000, collisionDetected,  row4Leds);
+	
+endmodule

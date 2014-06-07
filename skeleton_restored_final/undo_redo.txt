@@ -1,0 +1,160 @@
+MED
+C:\Users\talal\Desktop\ECE 350\HW\HW 6\skeleton_restored\imem.mif
+
+	Undo Commands
+	     1.	Paste from Clipboard
+	     2.	Paste from Clipboard
+	     3.	Paste from Clipboard
+	     4.	Paste from Clipboard
+	     5.	Paste from Clipboard
+	     6.	Paste from Clipboard
+	     7.	Paste from Clipboard
+	     8.	Paste from Clipboard
+	     9.	Paste from Clipboard
+	    10.	Paste from Clipboard
+	    11.	Cells
+	    12.	Paste from Clipboard
+	    13.	Paste from Clipboard
+	    14.	Paste from Clipboard
+	    15.	Paste from Clipboard
+	    16.	Paste from Clipboard
+	    17.	Paste from Clipboard
+	    18.	Paste from Clipboard
+	    19.	Paste from Clipboard
+	    20.	Paste from Clipboard
+	    21.	Paste from Clipboard
+	    22.	Paste from Clipboard
+	    23.	Paste from Clipboard
+	    24.	Paste from Clipboard
+	    25.	Paste from Clipboard
+	    26.	Paste from Clipboard
+	    27.	Paste from Clipboard
+	    28.	Paste from Clipboard
+	    29.	Paste from Clipboard
+	    30.	Paste from Clipboard
+	    31.	Paste from Clipboard
+	    32.	Paste from Clipboard
+	    33.	Paste from Clipboard
+	    34.	Paste from Clipboard
+	    35.	Paste from Clipboard
+	    36.	Paste from Clipboard
+	    37.	Paste from Clipboard
+	    38.	Paste from Clipboard
+	    39.	Paste from Clipboard
+	    40.	Paste from Clipboard
+	    41.	Paste from Clipboard
+	    42.	Paste from Clipboard
+	    43.	Paste from Clipboard
+	    44.	Paste from Clipboard
+	    45.	Paste from Clipboard
+	    46.	Paste from Clipboard
+	    47.	Paste from Clipboard
+	    48.	Paste from Clipboard
+	    49.	Paste from Clipboard
+	    50.	Paste from Clipboard
+
+
+MED
+C:\Users\talal\Desktop\ECE 350\HW\HW 6\skeleton_restored\dmem.mif
+
+	Undo Commands
+	     1.	Paste from Clipboard
+	     2.	Paste from Clipboard
+	     3.	Paste from Clipboard
+	     4.	Paste from Clipboard
+	     5.	Paste from Clipboard
+	     6.	Paste from Clipboard
+	     7.	Paste from Clipboard
+	     8.	Paste from Clipboard
+	     9.	Paste from Clipboard
+	    10.	Paste from Clipboard
+	    11.	Paste from Clipboard
+	    12.	Paste from Clipboard
+	    13.	Paste from Clipboard
+	    14.	Paste from Clipboard
+	    15.	Paste from Clipboard
+	    16.	Paste from Clipboard
+	    17.	Paste from Clipboard
+	    18.	Paste from Clipboard
+	    19.	Paste from Clipboard
+	    20.	Paste from Clipboard
+	    21.	Paste from Clipboard
+	    22.	Paste from Clipboard
+	    23.	Paste from Clipboard
+	    24.	Paste from Clipboard
+	    25.	Paste from Clipboard
+	    26.	Paste from Clipboard
+	    27.	Paste from Clipboard
+	    28.	Paste from Clipboard
+	    29.	Paste from Clipboard
+	    30.	Paste from Clipboard
+	    31.	Paste from Clipboard
+	    32.	Paste from Clipboard
+	    33.	Paste from Clipboard
+	    34.	Paste from Clipboard
+	    35.	Paste from Clipboard
+	    36.	Paste from Clipboard
+	    37.	Paste from Clipboard
+	    38.	Paste from Clipboard
+	    39.	Paste from Clipboard
+	    40.	Paste from Clipboard
+	    41.	Paste from Clipboard
+	    42.	Paste from Clipboard
+	    43.	Paste from Clipboard
+	    44.	Paste from Clipboard
+	    45.	Paste from Clipboard
+
+
+MED
+C:\Users\talal\Desktop\ECE 350\HW\HW 6\skeleton_restored\test1.imem.mif
+
+	Undo Commands
+	     1.	Change Memory Radix
+	     2.	Change Address Radix
+
+
+MED
+C:\Users\talal\Desktop\ECE 350\HW\HW 6\skeleton_restored\test1.dmem.mif
+
+	Undo Commands
+	     1.	Change Memory Radix
+	     2.	Change Address Radix
+
+
+RPW
+
+	Undo Commands
+	     1.	||Compilation Report||Flow Summary
+
+
+WED
+
+	Undo Commands
+	     1.	Delete Node, Bus or Waveform Divider
+	     2.	Delete Node, Bus or Waveform Divider
+	     3.	Drop Node
+			 *** 
+	     4.	Drop Node
+			 *** 
+	     5.	Drop Node
+			 *** 
+	     6.	Drop Node
+			 *** 
+	     7.	Drop Node
+			 *** 
+	     8.	Count Value
+			 *** 
+	     9.	Insert Node or Bus
+	    10.	Delete Node, Bus or Waveform Divider
+	    11.	Count Value
+			 *** 
+	    12.	Insert Node or Bus
+	    13.	Delete Node, Bus or Waveform Divider
+
+
+RPW
+
+	Undo Commands
+	     1.	||Simulation Report||Simulator||Simulation Waveforms
+
+
