@@ -1,0 +1,36 @@
+--------------------------------------------------------------------------------------
+Timing Analyzer Summary
+--------------------------------------------------------------------------------------
+
+Type           : Worst-case tco
+Slack          : N/A
+Required Time  : None
+Actual Time    : 11.969 ns
+From           : pipeProcessor:myProcessor|memory:memoryStageMod|register:dataMemorReg|my_dff:myblock[1].dFF|f
+To             : lcd_data[1]
+From Clock     : clock
+To Clock       : --
+Failed Paths   : 0
+
+Type           : Clock Setup: 'clock'
+Slack          : N/A
+Required Time  : None
+Actual Time    : 8.55 MHz ( period = 116.937 ns )
+From           : pipeProcessor:myProcessor|memory:memoryStageMod|my_dff:jalMemFF1|f
+To             : pipeProcessor:myProcessor|execute:executeStageMod|register:execALUReg|my_dff:myblock[30].dFF|f
+From Clock     : clock
+To Clock       : clock
+Failed Paths   : 0
+
+Type           : Total number of failed paths
+Slack          : 
+Required Time  : 
+Actual Time    : 
+From           : 
+To             : 
+From Clock     : 
+To Clock       : 
+Failed Paths   : 0
+
+--------------------------------------------------------------------------------------
+

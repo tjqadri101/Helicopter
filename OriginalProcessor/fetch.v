@@ -1,0 +1,56 @@
+module fetch(clock, br, jal_jr, jal_jrClr, aclr, brVal, jal_jrVal, insOut, pcOut, jOut, stallA, stallB); 
+	input clock, br, jal_jr, aclr, jal_jrClr, stallA, stallB;
+	input [31:0] jal_jrVal, brVal;
+	output [31:0] jOut, insOut, pcOut;
+	wire [31:0] pc, pc_next, imem_out, pc_one, pcOut1,jumpTo, jumpToIn, jmuxOut, consOne, brmuxOut, pcA, pcB, zer, imem_outIn, 
+				stallHigh, pc_oneIn ,pc_less, pcOut2, jOut2, insOut2;
+	wire high_enable, pcinAdd, coutpcAdd,  jOp, stallClr,stallB1, coutpcAdd2, stallA1;
+	wire [1:0] jsel, brsel, jal_jrSel;
+	
+	//assign stallHigh = {32{~stallA}};
+	assign stallA1 = stallA | stallB;
+	assign stallClr = jal_jrClr | br ;
+	assign high_enable = 1'b1;
+	assign consOne =  32'd1;
+	assign zer = 32'd0;
+	assign pcinAdd = 1'b0;
+	register pcReg(pc_next, aclr, clock, high_enable, pc);
+	imem insmem(pc,high_enable,~clock,imem_out);
+	
+//	Dec2 jdec(jOp, jsel);
+//	Dec2 jal_jrdec(jal_jr, jal_jrSel);
+//	Dec2 brdec(br, brsel);
+	
+//	Mux2b #(32) jmux(jumpTo, brmuxOut, jsel, jmuxOut);
+//	Mux2b #(32) jal_jrmux(jal_jrVal, jmuxOut, jal_jrSel, pc_next);
+//	Mux2b #(32) brmux(brVal, pc_one, brsel, brmuxOut);
+
+	Mux2bin #(32) jmux(brmuxOut, jumpTo, jOp, jmuxOut);
+	Mux2bin #(32) jal_jrmux(jmuxOut, jal_jrVal, jal_jr, pcA);
+	Mux2bin #(32) brmux(pc_one,brVal,  br, brmuxOut);
+	Mux2bin #(32) stalArmux(pcA, pc, stallA, pcB);
+	
+	Mux2bin #(32) stalBrmux(pcB, pc_less, stallB, pc_next);
+	//Mux2bin #(32) stalBmux(pcB, pc,  stallB, pc_next);
+	
+	CLA pcadd(pc, consOne, pcinAdd, pc_one, coutpcAdd);
+	CLA pcsub2(pc, ~consOne, 1'b1, pc_less, coutpcAdd2);
+	assign jumpTo[26:0] = imem_out[26:0];
+	assign jumpTo[31:27] = pc_one[31:27];
+//	
+	Mux2bin #(32) pcmux(pc_one,zer,  stallA1, pc_oneIn);
+	Mux2bin #(32) jumprmux(jumpTo, zer, stallA1, jumpToIn);
+	Mux2bin #(32) insmux(imem_out, zer,  stallA1, imem_outIn);
+//	
+	
+	register pcoutReg(pc_oneIn, stallClr, clock, high_enable, pcOut2);
+	//register pcout1Reg(pcOut1, aclr, clock, high_enable, pcOut);
+	register joutReg(jumpToIn, stallClr, clock, high_enable, jOut2);
+	register insoutReg(imem_outIn, stallClr, clock, high_enable, insOut2);
+	assign pcOut = pcOut2; //& stallHigh;
+	assign jOut = jOut2;// & stallHigh;
+	assign insOut = insOut2;// & stallHigh;
+	
+	assign jOp = imem_out[27] & ~imem_out[28] & ~imem_out[29] & ~imem_out[30]  & ~imem_out[31];
+endmodule
+

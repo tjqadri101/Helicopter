@@ -1,0 +1,14 @@
+module processor(clock, reset, ps2_key_pressed, ps2_out, lcd_write, lcd_data);
+
+	input 			clock, reset, ps2_key_pressed;
+	input 	[7:0]	ps2_out;
+	output 			lcd_write;
+	output 	[31:0] 	lcd_data;
+	
+	// your processor here
+	imem myimem(	.address 	(12'b000000000000),
+					.clken		(1'b1),
+					.clock		(clock),
+					.q 			(lcd_data));
+ 
+endmodule

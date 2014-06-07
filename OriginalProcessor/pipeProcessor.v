@@ -1,0 +1,52 @@
+module pipeProcessor(aclr, clock, pc_one1, instruction, FinalWr, FINAL,	RD_DEST, PC_Final, fdCheck1, fdCheck2, stallCheck);
+
+input aclr, clock;
+output 	[31:0] 	pc_one1, instruction, FINAL, PC_Final;
+output [4:0] RD_DEST; 
+output FinalWr, fdCheck1, fdCheck2, stallCheck ;
+wire branchCtrl, jal_jr1,reg_WBack, jrOp, bOp, jalOp, aluSrc,memWr, regWr, m2Reg, branchExOut, lthOut, neOut, memWrEx, regWrEx, m2RegEx,
+	jalEx,regWrMemOut, m2RegMemOut, jalMemout, jal_jrExClr, brClrMem, dataMemCtrl, loadCur, loadOut, storeCur,
+	storeOut,  loadOu, storeOu, stall1, stall2, highFD1, highFD2, stall_1, stallB, bOp_2,bOp_2Ou, stallMul, stallMulInc;			
+wire[31:0] brAddResMemOut, jalJrAddr1, insOut, pcOut, jOut, pcCur, data_WBack, data_readA, data_readB, immediateOut,pcDecOut, jump_Out,
+			brAddRes1, alu_result1, RData2, pcExout, data_ReadOutMem, ALUResultOut, pcMemout;
+wire[4:0] rd_WBack, RD, ALUop, shiftamt,RdExOut1, rdMemOut, D_X_RS1, D_X_RS2, rs1FD, rs2FD;
+wire [2:0] aluActrl, aluBctrl; 
+
+fetch fetchStageMod(clock, branchCtrl, jal_jr1, jal_jrExClr, aclr, brAddResMemOut, jalJrAddr1, insOut, pcOut, jOut, stallMulInc, stall2);
+
+decode decodeStageMod(highFD1, highFD2, insOut, pcOut, jOut, clock, reg_WBack, aclr, rd_WBack, 
+						data_WBack, data_readA, data_readB, immediateOut, RD, ALUop, shiftamt, pcDecOut,
+						jrOp, bOp, jalOp, aluSrc,memWr, regWr, jump_Out, m2Reg, branchCtrl, D_X_RS1, D_X_RS2,
+						loadCur, loadOut, storeCur, storeOut, rs1FD, rs2FD, stall1, bOp_2);
+
+execute executeStageMod(aclr, clock, data_readA, data_readB, immediateOut, RD, ALUop, shiftamt, pcDecOut, 
+		jrOp, bOp, jalOp, aluSrc,memWr, regWr, jump_Out, m2Reg, branchExOut, lthOut, neOut,
+		brAddRes1, alu_result1, jal_jr1,jal_jrExClr, jalJrAddr1, RdExOut1, RData2, memWrEx, regWrEx, m2RegEx, pcExout, jalEx,
+		data_WBack, aluActrl, aluBctrl, loadOut, loadOu, storeOut, storeOu, bOp_2,bOp_2Ou, rs1FD, rs2FD);	
+		
+memory memoryStageMod(branchExOut,neOut, lthOut, aclr, clock,memWrEx, alu_result1, RData2, RdExOut1, brAddRes1,pcExout, jalEx,
+				regWrEx, m2RegEx, branchCtrl, data_ReadOutMem, rdMemOut, regWrMemOut, m2RegMemOut, ALUResultOut, brAddResMemOut,
+				pcMemout, jalMemout, dataMemCtrl, data_WBack, bOp_2Ou);	
+				
+write_back wbStageMod( pcMemout, jalMemout, aclr, clock, data_ReadOutMem, rdMemOut, regWrMemOut, 
+					m2RegMemOut,  ALUResultOut,data_WBack, rd_WBack, reg_WBack);	
+
+bypassCtrl byProcCtrl(loadOu,  storeOut, rs1FD,rs2FD, D_X_RS1, D_X_RS2, RdExOut1, rd_WBack, aluActrl,
+						aluBctrl, dataMemCtrl, highFD1, highFD2);
+
+ldStall ldStall1(loadOut, storeCur, loadOu, storeOut, RD, RdExOut1, rs1FD,rs2FD, D_X_RS1, D_X_RS2, stall_1, stall2);
+my_dff stBff(stall_1, aclr, clock, 1'b1, stallB);
+assign stall1 = stall_1 | stall2;
+assign stallMulInc =  stall_1;
+
+assign pc_one1 = pcOut;
+assign instruction = insOut; 		
+assign FINAL = data_WBack;
+assign RD_DEST = rd_WBack;
+assign FinalWr = reg_WBack;	
+assign PC_Final = pcMemout;	
+assign fdCheck1 =highFD1; 
+assign fdCheck2 = highFD2;
+assign stallCheck =stallMulInc;							
+
+endmodule

@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="skeleton">
+		<CBX_INST_ENTRY INSTANCE_NAME="|TQ4_hw6|pipeProcessor:myProcessor|execute:executeStageMod|lpm_divide0:dividLPM1|lpm_divide:lpm_divide_component" CBX_FILE_NAME="lpm_divide_66s.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|TQ4_hw6|pipeProcessor:myProcessor|execute:executeStageMod|lpm_mult1:mulLPM1|lpm_mult:lpm_mult_component" CBX_FILE_NAME="mult_34n.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|TQ4_hw6|pipeProcessor:myProcessor|fetch:fetchStageMod|imem:insmem|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_7h81.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|TQ4_hw6|pipeProcessor:myProcessor|memory:memoryStageMod|dmem:dataMem|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_vqc1.tdf"/>
+	</PROJECT>
+</LOG_ROOT>
